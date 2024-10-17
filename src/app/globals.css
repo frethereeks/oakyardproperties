@@ -9,19 +9,42 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #171717;
     --foreground: #ededed;
   }
 }
 
+:root {
+  margin: 0;
+  padding: 0;
+  outline: none !important;
+  outline: 0 !important;
+  box-sizing: border-box;
+  transition: all .25s ease-in-out;
+}
+
+html,
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+@layer {
+  /* .font-geist {
+    @apply font-[family-name: var(--font-geist-sans)];
+  }
+  .font-geist-mono {
+    @apply font-[family-name: var(--font-geist-mono)];
+  } */
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .container {
+    min-width: 100% !important;
   }
 }

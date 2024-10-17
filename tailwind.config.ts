@@ -6,13 +6,24 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
+      screen: {
+        'xs': '512px'
+      },
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        primary: '#3b82f6',
+        success: "#09dba0",
+        danger: "#f34f7c",
+        default: "#323f89"
+      },
+      fontFamily: {
+        sourceSerif: 'var(--sourceSerif)',
+        nunito: 'var(--nunito)',
       },
     },
+
   },
   plugins: [],
 };
