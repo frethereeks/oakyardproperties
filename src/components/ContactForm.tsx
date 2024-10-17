@@ -42,7 +42,7 @@ export default function ContactForm() {
                             withCountryCallingCode={true}
                             key={234}
                             defaultCountry='NG'
-                            style={{ outline: "none !important" || "0 !important", ring: "none !important" || "0 !important", width: '108%' }}
+                            style={{ outline: "none", ring: "none", width: '108%' }}
                             countryCallingCodeEditable={false}
                             value={phone}
                             name="phone"

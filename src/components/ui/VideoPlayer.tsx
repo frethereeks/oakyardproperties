@@ -16,6 +16,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
   provider: _provider,
 }) => {
   const provider = _provider?.toLowerCase();
+  console.log({poster, type})
   return (
     <>
       {provider === "youtube" && (

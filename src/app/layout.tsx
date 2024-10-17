@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Toaster } from 'react-hot-toast'
-import { DM_Sans, Nunito_Sans } from 'next/font/google'
 import { Footer, Header } from "@/components";
+import { DM_Sans, Nunito_Sans } from 'next/font/google'
 
 const DMSans = DM_Sans({ subsets: ["latin"], weight: ["200", "300", "400", "500", "600", "700", "800", "900"], variable: "--DMSans" })
 const nunitoSans = Nunito_Sans({ subsets: ["latin"], weight: ["200", "300", "400", "500", "600", "700", "800", "900"], variable: "--nunito" })

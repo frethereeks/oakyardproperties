@@ -18,7 +18,7 @@ export default function AppSlider({
     autoplay = true,
     className,
     direction = "horizontal",
-    childClassName,
+    // childClassName,
     items,
     ...props
 }: SwiperProps & {

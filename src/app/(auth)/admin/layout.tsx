@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
+import "../../globals.css";
 import { Footer, Header } from "@/components";
 
-const inter = Inter({ subsets: ["latin"] });
+import { DM_Sans, Nunito_Sans } from 'next/font/google'
+import { Toaster } from "react-hot-toast";
+
+const DMSans = DM_Sans({ subsets: ["latin"], weight: ["200", "300", "400", "500", "600", "700", "800", "900"], variable: "--DMSans" })
+const nunitoSans = Nunito_Sans({ subsets: ["latin"], weight: ["200", "300", "400", "500", "600", "700", "800", "900"], variable: "--nunito" })
 
 export const metadata: Metadata = {
   title: "Frethereeks :: Portfolio",
@@ -17,7 +20,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} min-h-screen relative bg-backdrop`}>
+      <body
+        className={`${DMSans.variable} ${nunitoSans.variable} antialiased font-nunito`}
+      >
+        <Toaster />
         <Header />
         <div className="min-h-[90vh]">
           {children}
