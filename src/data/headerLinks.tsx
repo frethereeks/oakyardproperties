@@ -1,4 +1,10 @@
-export const headerLinks: HeaderLinks[] = [
+type THeaderLinks = {
+    id: string
+    title: string
+    url: string
+}
+
+export const headerLinks: THeaderLinks[] = [
     {
         id: "802630",
         title: "Home",
@@ -14,11 +20,11 @@ export const headerLinks: HeaderLinks[] = [
         title: "Properties",
         url: "/properties"
     },
-    {
-        id: "802633",
-        title: "Services",
-        url: "/services"
-    },
+    // {
+    //     id: "802633",
+    //     title: "Services",
+    //     url: "/services"
+    // },
     {
         id: "802634",
         title: "Contact",

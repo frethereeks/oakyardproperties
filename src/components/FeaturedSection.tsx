@@ -1,5 +1,5 @@
 import React from 'react'
-import { Header1, Header2, Header3, Para2, Para3, } from './ui/Typography'
+import { Header2, Header3, Para2, Para3, } from './ui/Typography'
 import Image from 'next/image'
 import { ASSETS_URL } from '@/constants'
 import { IoMdExpand } from 'react-icons/io'
@@ -13,18 +13,18 @@ export default function FeaturedSection() {
             <div className="container mx-auto flex flex-col gap-4 md:gap-8">
                 <div className="flex flex-col gap-2">
                     <Para2 variant='secondary'>Today&apos;s Best Deal</Para2>
-                    <Header1>25% Discount</Header1>
+                    <Header2 className="text-primary font-semibold">25% Discount</Header2>
                 </div>
                 <div className="grid md:grid-cols-2 gap-6 md:gap-8">
                     <aside className="relative min-h-64 h-64 md:h-full rounded-sm">
-                        <Image src={ASSETS_URL["estate_eating_table"]} alt={ASSETS_URL["estate_eating_table"]} className='object-cover' fill />
+                        <Image src={ASSETS_URL["POLICE_ESTATE"]} alt={ASSETS_URL["POLICE_ESTATE"]} className='object-cover' fill />
                     </aside>
                     <aside className="flex flex-col gap-8 md:gap-12 py-4">
                         <div className="flex flex-col gap-1 md:gap-2">
-                            <Header2>O&apos;Donnell Grandeur</Header2>
+                            <Header2 className="text-primary font-semibold">Oakyard Police Estate</Header2>
                             <div className="flex items-end gap-2">
                                 <Para2 className='uppercase leading-none line-through'>&#8358;160M</Para2>
-                                <Header3 variant='secondary' className='uppercase'>&#8358;120M</Header3>
+                                <Header3 className="text-primary font-semibold uppercase" variant='secondary'>&#8358;120M</Header3>
                             </div>
                             <Para2 className='max-w-lg'>First off-the-plan Passive House development features a swal of energy-saving technologies, including applicanes from sustainability leader.</Para2>
                         </div>
@@ -39,7 +39,7 @@ export default function FeaturedSection() {
                                     <aside key={feature.id} className="bg-white rounded-sm p-4 md:p-6 flex flex-col shadow-lg hover:shadow-secondary/20 group hover:-translate-y-2 transition-all duration-300">
                                         <div className="flex items-center gap-1">
                                             <div className="h-10 w-10 border-primary/50 group-hover:scale-110 flex-shrink-0 flex justify-start items-center text-2xl md:text-3xl text-secondary">{feature.icon}</div>
-                                            <Header3>{feature.title}</Header3>
+                                            <Header3 className="text-primary font-semibold">{feature.title}</Header3>
                                         </div>
                                         <Para3>{feature.description}</Para3>
                                     </aside>

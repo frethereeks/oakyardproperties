@@ -41,6 +41,14 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+
+  .leading-loose {
+    line-height: 1.8;
+  }
+
+  .leading-snug {
+    line-height: 1.6;
+  }
 }
 
 @media screen and (max-width: 640px) {

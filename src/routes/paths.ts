@@ -41,5 +41,5 @@ export const appRoutePaths = {
     ...authRoutes,
     ...adminRoutes,
     ...publicRoutes,
-    googleMap: `https://goo.gl/maps/wZGLU81Aq68uT18c91`
+    googleMap: `https://maps.google.com/maps?width=100%25&height=600&hl=en&q=Olusegun%20Obasajo%20Way,%20secondary,%20Abuja,%20Nigeria+(Oakyard%20Properties)&t=&z=14&ie=UTF8&iwloc=B&output=embed`
 }

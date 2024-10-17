@@ -1,18 +1,20 @@
 "use client"
 import React, { useEffect, useState, useRef } from 'react'
-import { usePathname } from 'next/navigation';
 
 import Link from 'next/link'
-import { IoIosSearch } from "react-icons/io"
+// import { IoIosSearch } from "react-icons/io"
+import { usePathname } from 'next/navigation'
 import { headerLinks } from '@/data'
 import Image from 'next/image';
 import { ASSETS_URL } from '@/constants';
+import { appRoutePaths } from '@/routes/paths';
+import { ButtonSmall } from './ui/Buttons';
 
 export default function Header() {
   const [navShow, setNavShow] = useState(false);
   const [fixed, setFixed] = useState(false);
-  const location = usePathname();
   const headerRef = useRef(null);
+  const pathname = usePathname()
 
   useEffect(() => {
     window.onscroll = () => {
@@ -30,31 +32,32 @@ export default function Header() {
     }
   }, [])
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-    setNavShow(false)
-    //eslint-ignore-next-line
-  }, [location])
 
   return (
-    <header ref={headerRef} className={`px-4 pb-4 fixed w-full h-auto left-0 top-0 z-50 ${fixed ? 'bg-primary shadow-md shadow-primary/10' : 'bg-transparent'}`}>
-      <div className="container flex justify-end items-center gap-3">
+    <header ref={headerRef} className={`px-4 p-4 fixed w-full h-auto left-0 top-0 z-50 ${fixed ? 'bg-white shadow-md shadow-primary/10 fixed' : 'bg-transparent relative'}`}>
+      {/* <div className="container flex justify-end items-center gap-3">
         <Link href={"mailto:info@oakyardproperties.com"} className='text-[.65rem] md:text-xs text-white'>info@oakyardproperties.com</Link>
-        <Link href={"tel:+234802808256025"} className='text-[.65rem] md:text-xs text-white pl-3 border-l border-l-bluish'>+23480-280-825-6025</Link>
+        <Link href={"tel:+234802808256025"} className='text-[.65rem] md:text-xs text-white pl-3 border-l border-l-primary'>+23480-280-825-6025</Link>
         <span className="cursor-pointer p-4 grid place-items-center text-white text-[.65rem] md:text-xs"><IoIosSearch /></span>
-      </div>
+      </div> */}
       <div className="md:container mx-auto flex items-center justify-between gap-4 relative">
-        <Link href={"/"} className={`relative uppercase text-white font-bold text-xl md:text-3xl flex items-end`}>
-          {/* Oakyard<span className='-translate-y-1.5 h-2 w-2 flex rounded-sm bg-pink-500 ml-1'></span> */}
-          <Image src={ASSETS_URL["oakyard_logo"]} alt={'oakyard properties logo'} className='object-contain' fill />
+        <Link href={appRoutePaths.home} className={`p-2 ${fixed ? 'bg-white' : 'bg-transparent'}`}>
+          <h1 className={`relative uppercase font-bold text-xl md:text-3xl flex items-end h-10 w-32 p-2`}>
+            <Image src={ASSETS_URL["oakyard_logo"]} alt={'oakyard properties logo'} className='object-contain' fill />
+          </h1>
         </Link>
-        <nav className={`absolute md:static z-50 top-full w-full md:w-max flex-1 flex flex-col md:flex-row md:justify-end md:gap-4 bg-bluish md:bg-transparent transition-all duration-300  ${navShow ? 'left-0' : 'left-[100vw]'}`}>
-          {
-            headerLinks.map(link => (
-              <Link key={link.id} href={link.url} className='text-sm text-white font-medium py-2 px-4 bg-transparent hover:bg-white hover:text-bluish'>{link.title}</Link>
-            ))
-          }
-          <Link href={"/contact"} className='text-sm text-bluish font-bold py-2 px-4 bg-white hover:bg-white/60 hover:text-bluish'>Get Quote</Link>
+        <nav className={`absolute md:static z-50 top-full w-full md:w-max flex-1 flex flex-col md:flex-row md:justify-between md:gap-4 md:bg-transparent transition-all duration-300  ${navShow ? 'left-0' : 'left-[100vw]'}`}>
+          <div className="flex-1 flex flex-col md:flex-row md:justify-center md:gap-4">
+            {
+              headerLinks.map(link => (
+                <Link key={link.id} href={link.url} className={`text-sm hover:text-primary bg-white font-medium py-2 px-4 relative after:hidden md:after:flex after:absolute after:h-1.5 after:w-1.5 after:left-1/2 after:-translate-x-1/2 after:bottom-0 hover:after:bg-secondary ${pathname === link.url ? 'text-primary after:bg-secondary' : 'text-dark after:bg-transparent'} `}>{link.title}</Link>
+              ))
+            }
+          </div>
+          {/* <Link href={"/contact"} className='text-sm text-primary font-medium py-2 px-4 bg-white hover:bg-white/60 hover:text-primary'>Get Quote</Link> */}
+          <Link href={appRoutePaths.contact}>
+            <ButtonSmall className='py-1.5 px-4 md:px-6 w-full md:w-max md:rounded-lg text-white bg-dark hover:bg-primary font-medium' >Get Quote</ButtonSmall>
+          </Link>
         </nav>
         <aside className="relative z-50 ml-auto w-[4rem] sm:w-max md:w-max flex gap-2 items-center justify-end sm:pr-0">
           <div className="relative md:hidden flex gap-2 items-center md:p-1">

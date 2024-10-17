@@ -14,12 +14,17 @@ const config: Config = {
       },
       colors: {
         primary: '#3b82f6',
+        secondary: "#f66",
+        // dark: "#171717",
+        // dark: "#214888",
+        dark: "#122b54",
+        sitetext: "#333333",
         success: "#09dba0",
         danger: "#f34f7c",
         default: "#323f89"
       },
       fontFamily: {
-        sourceSerif: 'var(--sourceSerif)',
+        DMSans: 'var(--DMSans)',
         nunito: 'var(--nunito)',
       },
     },

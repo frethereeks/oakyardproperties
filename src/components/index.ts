@@ -1,3 +1,4 @@
+import ContactForm from "./ContactForm";
 import ContentFulImage from "./ContentFulImage";
 import ContentRichText from "./ContentRichText";
 import FeaturedSection from "./FeaturedSection";
@@ -11,6 +12,7 @@ import StrategicSection from "./StrategicSection"
 import {VideoPlayer} from "./ui/VideoPlayer";
 
 export {
+    ContactForm,
     ContentFulImage,
     ContentRichText,
     FeaturedSection,
