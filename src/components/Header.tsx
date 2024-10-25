@@ -50,7 +50,7 @@ export default function Header() {
           <div className="flex-1 flex flex-col md:flex-row md:justify-center md:gap-4">
             {
               headerLinks.map(link => (
-                <Link key={link.id} href={link.url} className={`text-sm hover:text-primary bg-white font-medium py-2 px-4 relative after:hidden md:after:flex after:absolute after:h-1.5 after:w-1.5 after:left-1/2 after:-translate-x-1/2 after:bottom-0 hover:after:bg-secondary ${pathname === link.url ? 'text-primary after:bg-secondary' : 'text-dark after:bg-transparent'} `}>{link.title}</Link>
+                <Link key={link.id} href={link.url} className={`text-sm hover:text-primary bg-white font-medium py-2 px-4 relative after:hidden md:after:flex after:absolute after:h-1.5 after:w-1.5 after:left-1/2 after:-translate-x-1/2 after:bottom-0 hover:after:bg-secondary ${pathname === link.url || (pathname.includes(link.url) && link.title !== "Home") ? 'text-primary after:bg-secondary' : 'text-dark after:bg-transparent'} `}>{link.title}</Link>
               ))
             }
           </div>

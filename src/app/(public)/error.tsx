@@ -4,10 +4,10 @@ import { Header2, Para2, Para3 } from '@/components/ui/Typography';
 import Link from 'next/link';
 import { appRoutePaths } from '@/routes/paths';
 import { IoArrowBackOutline } from 'react-icons/io5';
-import { config } from '@/config';
+// import { config } from '@/config';
 
 export default function ErrorPage() {
-    console.log({ contentful: config.CONTENTFUL })
+    // console.log({ contentful: config.CONTENTFUL })
     return (
         <main className='flex flex-col'>
             <section className="relative bg-white py-10 px-4">

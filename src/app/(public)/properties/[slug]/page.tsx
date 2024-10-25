@@ -1,16 +1,11 @@
 import React from 'react'
-import type { Metadata } from "next";
-import { Header2, Header4, ParaSmallLight, Para2, Para3, Para1, ParaSmall, } from '@/components/ui/Typography'
-import { ASSETS_URL } from '@/constants'
-import Image from 'next/image'
-import { IoArrowForward, IoBedOutline, IoCalendarClearOutline, IoPersonCircleOutline, IoStar } from 'react-icons/io5'
+import { Header2, Header4, ParaSmallLight, Para2, Para3, } from '@/components/ui/Typography'
+import { IoArrowForward, IoBedOutline, IoPersonCircleOutline, IoStar } from 'react-icons/io5'
 import { BiBath } from 'react-icons/bi'
 import { contentfulClient } from '@/lib';
-
-export const metadata: Metadata = {
-  title: "Oakyard Properties :: Property",
-  description: "Oakyard properties LTD is a full-service, privately held commercial and residential real estate company.",
-};
+import { ContentFulImage, ContentfulRichText, PropertyCard } from '@/components';
+import { fetchProperties, fetchProperty } from '@/actions'
+import AppSlider from '@/components/ui/AppSlider';
 
 type PageParams = {
   params: {
@@ -18,26 +13,113 @@ type PageParams = {
   }
 }
 
-// export const generateStaticParams = ({ params: {slug} }: PageParams) => {
-//   return null
-// }
-
-const fetchProperty = async ({ slug }: { slug: string }) => {
+export const generateStaticParams = async () => {
   const res = await contentfulClient.getEntries({
-    "content_type": "property",
-    "fields.slug": slug
+    content_type: "property"
   })
-  return res;
+  return res.items?.map(el => ({
+    id: String(el.fields.id),
+    slug: el.fields.slug
+  }));
+}
+
+export async function generateMetadata({ params: { slug } }: PageParams) {
+  const data = await fetchProperty({ slug })
+  return {
+    title: `${data.items[0].fields.title}'s Details`,
+    description: data.items[0].fields.description.content[0].content[0].value
+  }
 }
 
 export default async function SinglePropertyPage({ params: { slug } }: PageParams) {
-
+  const properties = await fetchProperties()
   const data = await fetchProperty({ slug })
-  console.log('data', data)
+  const { title, image, address, price, state, description } = data.items[0].fields
 
   return (
     <main className='relative flex flex-col'>
       <section className="py-5 md:py-10 px-4">
+        <div className="container mx-auto flex flex-col-reverse md:flex-row gap-4 md:gap-8">
+          <aside className="flex-1 flex flex-col gap-6">
+            <div className="flex flex-col">
+              <div className="flex justify-between items-center gap-4">
+                <Header2 className='flex-1'>{title}</Header2>
+                <div className="flex items-center gap-1 md:gap-2 px-4">
+                  <IoStar className='text-lg md:text-xl text-secondary' />
+                  <Header4>4.82</Header4>
+                </div>
+              </div>
+              <Para2 className='font-medium pt-2'>{address}, {state}, Nigeria</Para2>
+              <Header4 className='pt-2 flex gap-0.5 items-center text-secondary'>&#8358;{price.toLocaleString()}<Para3>/ 300sqm</Para3></Header4>
+            </div>
+            {/* <form action="" className="border-2 border-sitetext/30 flex items-center gap-2 p-1 overflow-hidden rounded-[2rem] md:max-w-lg">
+              <input type="date" name="availability" id="availability" className="flex-1 p-2 md:p-3 bg-transparent text-base md:text-lg placeholder:text-sitetext/10 outline-none" />
+              <button type="submit" className="h-12 w-12 mr-0.5 bg-dark text-white grid place-items-center rounded-full flex-shrink-0 cursor-pointer text-xl md:text-2xl">
+                <IoCalendarClearOutline />
+              </button>
+            </form> */}
+            <div className="grid grid-cols-3 gap-3 md:gap-6">
+              {
+                [
+                  { id: "82zszlnasdf7230", icon: <IoPersonCircleOutline />, type: "Rooms", total: 4 },
+                  { id: "82zszlnasdf7231", icon: <IoBedOutline />, type: "Bedrooms", total: 2 },
+                  { id: "82zszlnasdf7232", icon: <BiBath />, type: "Bathroom", total: 1 },
+                ].map(extra => (
+                  <div key={extra.id} className="flex flex-col">
+                    <div className="text-xl md:text-2xl text-dark">{extra.icon}</div>
+                    <Para3 className="flex gap-1.5 capitalize">
+                      {extra.total}{`${extra.type}`}
+                    </Para3>
+                  </div>
+                ))
+              }
+            </div>
+            <div className="relative">
+              <ContentfulRichText content={description} />
+            </div>
+            <div className="grid grid-cols-2 md:max-w-md">
+              {
+                ["Kitchen", "Wi-Fi", "Free parking", "Pool", "TV", "Air conditioning", "Hair dryer", "Washer"].map(el => (
+                  <div key={el} className="flex items-center gap-1.5">
+                    <IoArrowForward className='text-sm' /> <ParaSmallLight className='text-dark'>{el}</ParaSmallLight>
+                  </div>
+                ))
+              }
+            </div>
+          </aside>
+          <aside className="flex-1 grid grid-cols-2 grid-rows-3 gap-4 md:gap-8">
+            {
+              image.map((el, i) => (
+                <div key={el.sys.id} className={`relative overflow-hidden rounded-lg ${i === 0 ? 'col-span-2 row-span-2' : ''} py-20 md:py-20`}>
+                  <ContentFulImage src={el.fields.file.url} alt={el.fields.file.fileName} className='object-cover' />
+                </div>
+              ))
+            }
+          </aside>
+        </div>
+      </section>
+      <section className="py-10 px-4 bg-slate-50 pb-20">
+        <div className="container mx-auto flex flex-col gap-6 md:gap-8">
+          <Header4>You may also like</Header4>
+          <AppSlider
+            items={properties?.items.filter(el => el.fields.slug !== slug).slice(0, 4).map((property) => <PropertyCard key={property.sys.id} property={property} />) || []}
+            breakpoints={{
+              360: { slidesPerView: 1, spaceBetween: 10 },
+              650: { slidesPerView: 2, spaceBetween: 20 },
+              1042: { slidesPerView: 3, spaceBetween: 30 },
+            }}
+          />
+        </div>
+      </section>
+    </main>
+  )
+}
+
+
+
+/* 
+
+<section className="py-5 md:py-10 px-4">
         <div className="container mx-auto flex flex-col-reverse md:flex-row gap-4 md:gap-8">
           <aside className="flex-1 flex flex-col gap-6">
             <div className="flex flex-col">
@@ -140,6 +222,4 @@ export default async function SinglePropertyPage({ params: { slug } }: PageParam
           </div>
         </div>
       </section>
-    </main>
-  )
-}
+*/

@@ -9,8 +9,8 @@ const DMSans = DM_Sans({ subsets: ["latin"], weight: ["200", "300", "400", "500"
 const nunitoSans = Nunito_Sans({ subsets: ["latin"], weight: ["200", "300", "400", "500", "600", "700", "800", "900"], variable: "--nunito" })
 
 export const metadata: Metadata = {
-  title: "Frethereeks :: Portfolio",
-  description: "This is Frederick Jones Personal Portolio",
+  title: "Oakyard Properties :: Admin Dashboard",
+  description: "Oakyard properties LTD is a full-service, privately held commercial and residential real estate company.",
 };
 
 export default function RootLayout({

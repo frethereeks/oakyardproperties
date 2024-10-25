@@ -1,29 +1,17 @@
-"use client"
-import { appRoutePaths } from '@/routes/paths'
 import { ASSETS_URL } from '@/constants'
 import React from 'react'
 import AppSlider from './ui/AppSlider'
-import Image from 'next/image'
 import { Header4, Para2 } from './ui/Typography'
-import Link from 'next/link'
+import { fetchProperties } from '@/actions'
+import PropertyCard from './PropertyCard'
 
-export default function StrategicSection() {
-    const sliderImages = [
-        { id: "82340asda234x0", property: ASSETS_URL["DC240124_1"], },
-        { id: "82340asda234x1", property: ASSETS_URL["DC240124_2"], },
-        { id: "82340asda234x2", property: ASSETS_URL["DC240124_3"], },
-        { id: "82340asda234x3", property: ASSETS_URL["DC240124_6"], },
-        { id: "82340asda234x4", property: ASSETS_URL["DC240124_7"], },
-    ]
+export default async function StrategicSection() {
+    const data = await fetchProperties()
     return (
         <>
             <section className='flex flex-col gap-4 md:gap-8 bg-blue/5 py-20 px-4'>
                 <AppSlider
-                    items={sliderImages.map((item) => (
-                        <Link href={`${appRoutePaths.properties}/${item.id}`} key={item.id} className="relative block py-32 md:py-36 overflow-hidden rounded-sm">
-                            <Image key={item.property} src={item.property} alt={item.property} className="absolute top-0 left-0 min-h-[100%] w-full h-full object-cover" fill={true} />
-                        </Link>
-                    ))}
+                    items={data?.items.slice(0, 4).map((property) => <PropertyCard key={property.sys.id} property={property} />) || []}
                     breakpoints={{
                         360: { slidesPerView: 1, spaceBetween: 10 },
                         650: { slidesPerView: 2, spaceBetween: 20 },
@@ -45,9 +33,9 @@ export default function StrategicSection() {
                                     { id: "8024as61xv", title: "Modern Design", text: "Oakyard Properties have a modern and elegant house design. You can choose the type of house that suits your taste and needs, ranging from type 36 to type 120." },
                                     { id: "8024as62xv", title: "Guaranteed Security", text: "Oakyard Properties always put in place an integrated security system. Each cluster is equipped witha fence, gate and guard post that are monitored by professional security officers. In addition, each hosue is also equippe with a fire alarm and CCTV." },
                                 ].map(strategic => (
-                                    <div key={strategic.id} className="flex flex-col gap-2 md:gap-4">
-                                        <Header4 className='text-primary' dotted>{strategic.title}</Header4>
-                                        <Para2 className='text-justify'>{strategic.text}</Para2>
+                                    <div data-aos-duration="1000" data-aos-delay="1000" data-aos="zoom-out-up" key={strategic.id} className="flex flex-col gap-2 md:gap-4">
+                                        <Header4 data-aos-duration="1000" data-aos-delay="1000" data-aos="fade-down-right" className='text-primary' dotted>{strategic.title}</Header4>
+                                        <Para2 data-aos-duration="1000" data-aos-delay="1000" data-aos="fade-up-left" className='text-justify'>{strategic.text}</Para2>
                                     </div>
                                 ))
                             }

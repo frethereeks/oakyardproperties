@@ -11,8 +11,8 @@ export default function QualitySection() {
                         [823497230, <AiOutlineIdcard key={823497231} className="text-inherit" />, "Mission", "To provide exceptional service and quality products to our clients an to follow through on our promises, while we strive to dliver individualized solutions to our client's housing needs and add value to their lives without compromise."],
                         [823497232, <AiFillCompass key={823497233} className="text-inherit" />, "Vision", "Our vision is to attain the height of being the leading real estate property company in the coutry and beyond. We consistently amove to develop collaborations and partnerships, based on transparency and mututal trust, which serves to build enduring client relationships."],
                         [823497234, <AiOutlineKey key={823497235} className="text-inherit" />, "Core Values", "Respect, trust, teamwork, excellence, innovation, effectiveness, passion, accountability and integrity."],
-                    ].map(([id, icon, title, text]) => (
-                        <figure key={id.toString()} className="flex flex-col gap-3 text-white max-w-[24rem] mx-auto my-5">
+                    ].map(([id, icon, title, text], i) => (
+                        <figure data-aos-duration="3000" data-aos-delay={`${i === 0 ? '1000' : i === 1 ? '2000' : '3000'}`} data-aos={`${i === 0 ? 'fade-left' : i === 1 ? 'fade-up' : 'fade-right'}`} key={id.toString()} className="flex flex-col gap-3 text-white max-w-[24rem] mx-auto my-5">
                             <span className="text-3xl sm:text-4xl h-10 w-10">{icon}</span>
                             <div className="flex flex-col gap-2">
                                 <Header4 className="font-bold text-lg sm:text-xl text-primary">{title}</Header4>

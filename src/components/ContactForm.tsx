@@ -19,7 +19,7 @@ export default function ContactForm() {
 
     return (
         <>
-            <form ref={formRef} onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-4 py-4">
+            <form data-aos-duration="1000" data-aos="fade-down" data-aos-delay="1800" ref={formRef} onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-4 py-4">
                 <div className="flex flex-col text-sitetext">
                     <ParaSmall className='pl-1 opacity-70'>First Name</ParaSmall>
                     <input type="text" placeholder='Angela' required className="border border-sitetext/70 focus:border-secondary hover:border-secondary outline-none rounded-md p-2 placeholder:opacity-70 font-sm text-sitetext bg-transparent" />

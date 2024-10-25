@@ -1,32 +1,41 @@
 import React from 'react'
-import { Header2, Header3, Para2, Para3, } from './ui/Typography'
-import Image from 'next/image'
-import { ASSETS_URL } from '@/constants'
+import { Header1, Header3, Para2, Para3, } from './ui/Typography'
 import { IoMdExpand } from 'react-icons/io'
 import { RiDoorOpenLine } from 'react-icons/ri'
 import { LuHourglass, LuToyBrick } from 'react-icons/lu'
+import ContentFulImage from './ContentFulImage'
+import Link from 'next/link'
+import { appRoutePaths } from '@/routes/paths'
+import ContentfulRichText from './ContentfulRichText'
+import { fetchProperty } from '@/actions'
 
-export default function FeaturedSection() {
+export default async function FeaturedSection() {
+    const property = await fetchProperty({ slug: "police-estate" })
+    const { slug, title, image, price, description } = property.items[0].fields
     return (
         // <section className='relative py-10 md:py-20 px-4 bg-blue/5'>
         <section className='relative py-10 md:py-20 px-4 bg-white'>
             <div className="container mx-auto flex flex-col gap-4 md:gap-8">
                 <div className="flex flex-col gap-2">
-                    <Para2 variant='secondary'>Today&apos;s Best Deal</Para2>
-                    <Header2 className="text-primary font-semibold">25% Discount</Header2>
+                    <div data-aos-duration="2000" data-aos-delay="1000" data-aos="fade-left">
+                        <Para2 variant='secondary'>Today&apos;s Best Deal</Para2>
+                    </div>
+                    <div data-aos-duration="2000" data-aos-delay="1000" data-aos="zoom-in-right">
+                        <Header3 className="text-primary font-semibold">25% Discount</Header3>
+                    </div>
                 </div>
                 <div className="grid md:grid-cols-2 gap-6 md:gap-8">
-                    <aside className="relative min-h-64 h-64 md:h-full rounded-sm">
-                        <Image src={ASSETS_URL["POLICE_ESTATE"]} alt={ASSETS_URL["POLICE_ESTATE"]} className='object-cover' fill />
-                    </aside>
+                    <Link href={`${appRoutePaths.properties}/${slug}`} className="relative min-h-64 h-64 md:h-full rounded-sm">
+                        <ContentFulImage src={image[0].fields.file.url} alt={title} className='object-cover' />
+                    </Link>
                     <aside className="flex flex-col gap-8 md:gap-12 py-4">
                         <div className="flex flex-col gap-1 md:gap-2">
-                            <Header2 className="text-primary font-semibold">Oakyard Police Estate</Header2>
+                            <Header1 className="text-dark font-bold">Oakyard {title}</Header1>
                             <div className="flex items-end gap-2">
-                                <Para2 className='uppercase leading-none line-through'>&#8358;160M</Para2>
-                                <Header3 className="text-primary font-semibold uppercase" variant='secondary'>&#8358;120M</Header3>
+                                <Para2 className='uppercase leading-none line-through'>&#8358;{(price + 5000000).toLocaleString()}</Para2>
+                                <Header3 className="text-primary font-semibold uppercase" variant='secondary'>&#8358;{price.toLocaleString()}</Header3>
                             </div>
-                            <Para2 className='max-w-lg'>First off-the-plan Passive House development features a swal of energy-saving technologies, including applicanes from sustainability leader.</Para2>
+                            <ContentfulRichText content={description} />
                         </div>
                         <div className="grid grid-cols-2 gap-4 md:gap-8 flex-wrap">
                             {

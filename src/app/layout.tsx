@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Toaster } from 'react-hot-toast'
-import { Footer, Header } from "@/components";
+import { AosProvider, Footer, Header } from '@/components'
 import { DM_Sans, Nunito_Sans } from 'next/font/google'
+
+import 'aos/dist/aos.css';
+
 
 const DMSans = DM_Sans({ subsets: ["latin"], weight: ["200", "300", "400", "500", "600", "700", "800", "900"], variable: "--DMSans" })
 const nunitoSans = Nunito_Sans({ subsets: ["latin"], weight: ["200", "300", "400", "500", "600", "700", "800", "900"], variable: "--nunito" })
@@ -25,7 +28,11 @@ export default function RootLayout({
         <Toaster />
         <Header />
         <div className="min-h-[90vh]">
+          <AosProvider>
+              <>
           {children}
+          </>
+          </AosProvider>
         </div>
         <Footer />
       </body>

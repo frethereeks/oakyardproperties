@@ -1,5 +1,7 @@
 "use server"
 
+import { contentfulClient } from "@/lib";
+
 // import prisma from "@/lib/prisma"
 // import { SessionOption } from "@/lib/sessionOption"
 // import { getIronSession } from "iron-session"
@@ -168,7 +170,7 @@
 //             const text = data.get("text")?.valueOf() as string
 //             const visibility = data.get("visibility")?.valueOf() as string
 //             const images = data.get("images")?.valueOf() as string
-            
+
 //             await prisma.blog.update({
 //                 where: { id: session.id },
 //                 data: { title, slug, category, text, visibility: Visiblity[visibility as keyof typeof Visiblity], images, }
@@ -329,4 +331,21 @@
 
 //         }
 //     }
-// } 
+// }
+
+
+
+export const fetchProperties = async (): Promise<TContentfulProperty | null> => {
+    const res = await contentfulClient.getEntries({
+        "content_type": "property"
+    })
+    return res as unknown as TContentfulProperty;
+}
+
+export const fetchProperty = async ({ slug }: { slug: string }) => {
+    const res = await contentfulClient.getEntries({
+        "content_type": "property",
+        "fields.slug": slug
+    })
+    return res as unknown as TContentfulProperty;
+}
