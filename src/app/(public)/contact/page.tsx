@@ -19,7 +19,7 @@ export default function ContactPage() {
   return (
     <main className='flex flex-col gap-5 lg:gap-10'>
       <section className="bg-dark py-10 relative">
-        <Image src={ASSETS_URL['DC240124_6']} alt={ASSETS_URL['DC240124_6']} className="object-cover object-top absolute top-0 left-0 w-full h-full bg-white opacity-40" fill />
+        <Image src={ASSETS_URL['DC240124_6']} alt='DC240124_6' className="object-cover object-top absolute top-0 left-0 w-full h-full bg-white opacity-40" fill />
         {/* <div className="absolute top-0 left-0 w-full h-full bg-dark opacity-60"></div> */}
         <div className="relative container mx-auto flex flex-col gap-10 px-4">
           <div data-aos-duration="1000" data-aos="fade-up-right" className="flex justify-between items-center gap-4 flex-wrap py-16">
@@ -73,9 +73,9 @@ export default function ContactPage() {
             <aside className="flex-1 lg:col-span-2 flex flex-col justify-center gap-4 rounded-md p-4 lg:p-8">
               <div data-aos-duration="1000" data-aos="fade-up" data-aos-delay="2000" className="flex flex-col items-center">
                 <Header4 dotted className='text-primary font-bold'>Reach out to us. Anytime.</Header4>
-                <Para2 className='text-sitetext opacity-70 font-bold'>We are attentive, empathetic and prompt in attending to your request</Para2>
+                <Para2 className='text-sitetext opacity-70 font-bold'>We are attentive, empathetic and prompt to attend to your request</Para2>
               </div>
-              <ContactForm />
+              <ContactForm showButton/>
             </aside>
           </div>
         </div>

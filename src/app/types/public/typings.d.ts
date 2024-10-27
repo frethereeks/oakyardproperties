@@ -28,6 +28,7 @@ type TPropertyFields = {
     price: number;
     address: string;
     state: string;
+    featured: boolean
 }
 
 type TFieldDescription = {

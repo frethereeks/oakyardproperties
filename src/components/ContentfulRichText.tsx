@@ -4,7 +4,7 @@ import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import Link from 'next/link'
 import ContentFulImage from './ContentFulImage'
-import { Para2 } from './ui/Typography'
+import { Para1 } from './ui/Typography'
 // import type { NodeRenderer,  } from '@contentful/rich-text-react-renderer'
 // { Document, EntryHyperlink, Paragraph, } from '@contentful/rich-text-types'
 // ContentfulCollection<Entry<EntrySkeletonType, undefined, string>>.items: Entry<EntrySkeletonType, undefined, string>[]
@@ -15,16 +15,16 @@ export default function ContentfulRichText({ content }: { content: any }) {
   return (
     <>{documentToReactComponents(content, {
       renderMark: {
-        [MARKS.BOLD]: (text: any) => <strong>{text}</strong>,
-        [MARKS.ITALIC]: (text: any) => <em>{text}</em>,
-        [MARKS.CODE]: (text: any) => <pre><code>{text}</code></pre>
+        [MARKS.BOLD]: (text: any) => <strong className='font-bold'>{text}</strong>,
+        [MARKS.ITALIC]: (text: any) => <em className='italic'>{text}</em>,
+        [MARKS.CODE]: (text: any) => <pre><code className='p-0.5 bg-zinc-300'>{text}</code></pre>
       },
       renderNode: {
         [BLOCKS.PARAGRAPH]: (node: any, children: any) => {
           if (node.content.find((item: any) => item.data.marks?.find((mark: any) => mark.type === "code"))) {
-            return <Para2 className='text-justify text-ellipsis'><pre><code>{children}</code></pre></Para2>
+            return <Para1 className='text-justify text-ellipsis'><pre><code>{children}</code></pre></Para1>
           }
-          return <Para2 className='text-justify text-ellipsis'>{children}</Para2>
+          return <Para1 className='text-justify text-ellipsis'>{children}</Para1>
         },
         // [INLINES.ENTRY_HYPERLINK]: (node: { data: { target: { sys: { contentType: { sys: { id: string} } } ; fields: { slug: string; title: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined} } } } ) => {
         [INLINES.ENTRY_HYPERLINK]: (node: any) => {

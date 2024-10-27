@@ -13,7 +13,7 @@ export default function HappyClientSection() {
                 <aside data-aos-duration="1000" data-aos="fade-up-right" className="flex flex-col gap-4 relative">
                     <div className="flex items-center gap-2">
                         <div className="relative h-10 w-10 md:h-12 md:w-12 rounded-full overflow-hidden flex-shrink-0">
-                            <Image src={ASSETS_URL["22th_May_Oakyard"]} alt={ASSETS_URL["22th_May_Oakyard"]} className='object-cover' fill />
+                            <Image src={ASSETS_URL["22th_May_Oakyard"]} alt="22th_May_Oakyard" className='object-cover' fill />
                         </div>
                         <div data-aos-duration="1000" data-aos-delay="1000" data-aos="zoom-in-left" className="flex-1 flex flex-col justify-center gap-1 pt-2">
                             <Para1 className='-my-2'>Francis Barbados</Para1>
@@ -25,7 +25,7 @@ export default function HappyClientSection() {
                 <aside data-aos-duration="1000" data-aos="fade-up-right" className="flex flex-col gap-4 relative">
                     <div className="flex items-center gap-2">
                         <div className="relative h-10 w-10 md:h-12 md:w-12 rounded-full overflow-hidden flex-shrink-0">
-                            <Image src={ASSETS_URL["24th_Jun_Oakyard1"]} alt={ASSETS_URL["24th_Jun_Oakyard1"]} className='object-cover' fill />
+                            <Image src={ASSETS_URL["24th_Jun_Oakyard1"]} alt="24th_Jun_Oakyard1" className='object-cover' fill />
                         </div>
                         <div data-aos-duration="1000" data-aos-delay="1000" data-aos="zoom-in-left" className="flex-1 flex flex-col justify-center gap-1 pt-2">
                             <Para1 className='-my-2'>Monday Daniel</Para1>
@@ -37,7 +37,7 @@ export default function HappyClientSection() {
                 <aside data-aos-duration="1000" data-aos="fade-up-right" className="flex flex-col gap-4 relative">
                     <div className="flex items-center gap-2">
                         <div className="relative h-10 w-10 md:h-12 md:w-12 rounded-full overflow-hidden flex-shrink-0">
-                            <Image src={ASSETS_URL["24th_Jun_Oakyard2"]} alt={ASSETS_URL["24th_Jun_Oakyard2"]} className='object-cover' fill />
+                            <Image src={ASSETS_URL["24th_Jun_Oakyard2"]} alt="24th_Jun_Oakyard2" className='object-cover' fill />
                         </div>
                         <div data-aos-duration="1000" data-aos-delay="1000" data-aos="zoom-in-left" className="flex-1 flex flex-col justify-center gap-1 pt-2">
                             <Para1 className='-my-2'>Miss Ruth</Para1>

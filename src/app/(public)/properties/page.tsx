@@ -21,7 +21,7 @@ export default async function PropertiesPage() {
   return (
     <main className='relative flex flex-col'>
       <section className="bg-dark py-10 relative">
-        <Image src={ASSETS_URL['DC240124_9']} alt={ASSETS_URL['DC240124_9']} className="object-cover object-top absolute top-0 left-0 w-full h-full bg-white opacity-40" fill />
+        <Image src={ASSETS_URL['DC240124_9']} alt='DC240124_9' className="object-cover object-top absolute top-0 left-0 w-full h-full bg-white opacity-40" fill />
         <div className="relative container mx-auto flex flex-col gap-10 px-4">
           <div className="flex justify-between items-center gap-4 flex-wrap py-16">
             <Header2 className="font-bold max-w-lg text-white text-3xl md:text-4xl">Quality. Durable. Dependable.</Header2>

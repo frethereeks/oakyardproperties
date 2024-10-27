@@ -7,7 +7,12 @@ import PhoneInput from 'react-phone-number-input'
 import flags from 'react-phone-number-input/flags';
 import 'react-phone-number-input/style.css'
 
-export default function ContactForm() {
+type TContactFormProps = {
+    showButton: boolean,
+    // formRef: React.MutableRefObject<HTMLFormElement | null>
+}
+
+export default function ContactForm({showButton = false}: TContactFormProps) {
     const [phone, setPhone] = useState<string | undefined>('')
     const formRef = useRef<HTMLFormElement | null>(null)
 
@@ -19,7 +24,7 @@ export default function ContactForm() {
 
     return (
         <>
-            <form data-aos-duration="1000" data-aos="fade-down" data-aos-delay="1800" ref={formRef} onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-4 py-4">
+            <form data-aos-duration="1000" data-aos="fade-down" data-aos-delay="1800" ref={formRef} onSubmit={handleSubmit} className="grid lg:grid-cols-2 gap-4 py-4">
                 <div className="flex flex-col text-sitetext">
                     <ParaSmall className='pl-1 opacity-70'>First Name</ParaSmall>
                     <input type="text" placeholder='Angela' required className="border border-sitetext/70 focus:border-secondary hover:border-secondary outline-none rounded-md p-2 placeholder:opacity-70 font-sm text-sitetext bg-transparent" />
@@ -60,10 +65,13 @@ export default function ContactForm() {
                         <textarea name="message" id="message" cols={30} rows={6} placeholder='Tell us what is on your mind...' className='border border-sitetext/70 focus:border-secondary hover:border-secondary outline-none rounded-md p-2 placeholder:opacity-70 font-sm text-sitetext bg-transparent resize-none'>
                         </textarea>
                     </div>
-                    <button type='submit' className="p-1.5 lg:p-2 px-4 w-max flex items-center gap-3 md:gap-1.5 text-white bg-primary hover:bg-white hover:text-primary border hover: border-primary">
-                        <IoAddCircleOutline size={25} />
-                        <span className="font-medium pr-1">Send Message</span>
-                    </button>
+                    {
+                        showButton ?
+                        <button type='submit' className="p-1.5 lg:p-2 px-4 w-max flex items-center gap-3 md:gap-1.5 text-white bg-primary hover:bg-white hover:text-primary border hover: border-primary">
+                            <IoAddCircleOutline size={25} />
+                            <span className="font-medium pr-1">Send Message</span>
+                        </button>: ""
+                    }
                 </div>
             </form>
         </>

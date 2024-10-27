@@ -1,9 +1,9 @@
 import React from 'react'
-import { Header2, Header4, ParaSmallLight, Para2, Para3, } from '@/components/ui/Typography'
+import { Header2, Header4, Para2, Para3, ParaSmall, } from '@/components/ui/Typography'
 import { IoArrowForward, IoBedOutline, IoPersonCircleOutline, IoStar } from 'react-icons/io5'
 import { BiBath } from 'react-icons/bi'
 import { contentfulClient } from '@/lib';
-import { ContentFulImage, ContentfulRichText, PropertyCard } from '@/components';
+import { ContentFulImage, ContentfulRichText, PropertyCard, QuoteButton } from '@/components';
 import { fetchProperties, fetchProperty } from '@/actions'
 import AppSlider from '@/components/ui/AppSlider';
 
@@ -38,7 +38,7 @@ export default async function SinglePropertyPage({ params: { slug } }: PageParam
 
   return (
     <main className='relative flex flex-col'>
-      <section className="py-5 md:py-10 px-4">
+      <section className="py-8 md:py-14 px-4">
         <div className="container mx-auto flex flex-col-reverse md:flex-row gap-4 md:gap-8">
           <aside className="flex-1 flex flex-col gap-6">
             <div className="flex flex-col">
@@ -74,14 +74,17 @@ export default async function SinglePropertyPage({ params: { slug } }: PageParam
                 ))
               }
             </div>
-            <div className="relative">
+            <div className="relative flex flex-col gap-4">
               <ContentfulRichText content={description} />
+              <div className="w-full flex justify-start py-4">
+                <QuoteButton property={data.items} />
+              </div>
             </div>
             <div className="grid grid-cols-2 md:max-w-md">
               {
                 ["Kitchen", "Wi-Fi", "Free parking", "Pool", "TV", "Air conditioning", "Hair dryer", "Washer"].map(el => (
-                  <div key={el} className="flex items-center gap-1.5">
-                    <IoArrowForward className='text-sm' /> <ParaSmallLight className='text-dark'>{el}</ParaSmallLight>
+                  <div key={el} className="flex items-center gap-1.5 py-0.5">
+                    <IoArrowForward className='text-sm' /> <ParaSmall className='text-dark'>{el}</ParaSmall>
                   </div>
                 ))
               }
@@ -164,13 +167,13 @@ export default async function SinglePropertyPage({ params: { slug } }: PageParam
           </aside>
           <aside className="flex-1 grid grid-cols-2 grid-rows-3 gap-4 md:gap-8">
             <div className="relative overflow-hidden rounded-lg col-span-2 row-span-2 py-20 md:py-20">
-              <Image src={ASSETS_URL["DC240124_3"]} alt={ASSETS_URL["DC240124_3"]} className='object-cover' fill />
+              <Image src={ASSETS_URL["DC240124_3"]} alt="DC240124_3" className='object-cover' fill />
             </div>
             <div className="relative overflow-hidden rounded-lg py-20 md:py-20">
-              <Image src={ASSETS_URL["DC240124_5"]} alt={ASSETS_URL["DC240124_5"]} className='object-cover' fill />
+              <Image src={ASSETS_URL["DC240124_5"]} alt="DC240124_5" className='object-cover' fill />
             </div>
             <div className="relative overflow-hidden rounded-lg py-20 md:py-20">
-              <Image src={ASSETS_URL["DC240124_7"]} alt={ASSETS_URL["DC240124_7"]} className='object-cover' fill />
+              <Image src={ASSETS_URL["DC240124_7"]} alt="DC240124_7" className='object-cover' fill />
             </div>
           </aside>
         </div>
@@ -186,7 +189,7 @@ export default async function SinglePropertyPage({ params: { slug } }: PageParam
             <aside className="flex flex-col gap-4 relative">
               <div className="flex items-center gap-2">
                 <div className="relative h-10 w-10 md:h-12 md:w-12 rounded-full overflow-hidden flex-shrink-0">
-                  <Image src={ASSETS_URL["22th_May_Oakyard"]} alt={ASSETS_URL["22th_May_Oakyard"]} className='object-cover' fill />
+                  <Image src={ASSETS_URL["22th_May_Oakyard"]} alt="22th_May_Oakyard" className='object-cover' fill />
                 </div>
                 <div className="flex-1 flex flex-col justify-center pt-2">
                   <Para1 className='-my-2'>Francis Barbados</Para1>
@@ -198,7 +201,7 @@ export default async function SinglePropertyPage({ params: { slug } }: PageParam
             <aside className="flex flex-col gap-4 relative">
               <div className="flex items-center gap-2">
                 <div className="relative h-10 w-10 md:h-12 md:w-12 rounded-full overflow-hidden flex-shrink-0">
-                  <Image src={ASSETS_URL["24th_Jun_Oakyard1"]} alt={ASSETS_URL["24th_Jun_Oakyard1"]} className='object-cover' fill />
+                  <Image src={ASSETS_URL["24th_Jun_Oakyard1"]} alt="24th_Jun_Oakyard1" className='object-cover' fill />
                 </div>
                 <div className="flex-1 flex flex-col justify-center pt-2">
                   <Para1 className='-my-2'>Akachi Andrew</Para1>
@@ -210,7 +213,7 @@ export default async function SinglePropertyPage({ params: { slug } }: PageParam
             <aside className="flex flex-col gap-4 relative">
               <div className="flex items-center gap-2">
                 <div className="relative h-10 w-10 md:h-12 md:w-12 rounded-full overflow-hidden flex-shrink-0">
-                  <Image src={ASSETS_URL["24th_Jun_Oakyard2"]} alt={ASSETS_URL["24th_Jun_Oakyard2"]} className='object-cover' fill />
+                  <Image src={ASSETS_URL["24th_Jun_Oakyard2"]} alt="24th_Jun_Oakyard2" className='object-cover' fill />
                 </div>
                 <div className="flex-1 flex flex-col justify-center pt-2">
                   <Para1 className='-my-2'>Tina Eze</Para1>

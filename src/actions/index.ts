@@ -335,7 +335,7 @@ import { contentfulClient } from "@/lib";
 
 
 
-export const fetchProperties = async (): Promise<TContentfulProperty | null> => {
+export const fetchProperties = async (): Promise<TContentfulProperty | undefined> => {
     const res = await contentfulClient.getEntries({
         "content_type": "property"
     })

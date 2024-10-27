@@ -46,11 +46,11 @@ export default async function FeaturedSection() {
                                     { id: "8a8zx234q9913", icon: <RiDoorOpenLine />, title: "25m", description: "With 3 Bedrooms fully detached duplex" },
                                     // { id: "8a8zx234q9912", icon: <LuToyBrick />, title: "100%", description: "Made with the best cement and bricks" },
                                     // { id: "8a8zx234q9913", icon: <LuHourglass />, title: "15mins", description: "It only takes 15 mins to get to the city center" },
-                                ].map(feature => (
-                                    <aside key={feature.id} className="bg-white rounded-sm p-4 md:p-6 flex flex-col shadow-lg hover:shadow-secondary/20 group hover:-translate-y-2 transition-all duration-300">
+                                ].map((feature, i) => (
+                                    <aside key={feature.id} data-aos-delay={`${i * 500}`} data-aos={`${i === 0 ? 'fade-up' : i === 1 ? 'fade-right' : i === 2 ? 'fade-right' : 'fade-up'}`} data-aos-duration="500" className="bg-white rounded-sm p-4 md:p-6 flex flex-col shadow-lg hover:shadow-dark/20 group hover:-translate-y-2 transition-all duration-300">
                                         <div className="flex items-center gap-1">
-                                            <div className="h-10 w-10 border-primary/50 group-hover:scale-110 flex-shrink-0 flex justify-start items-center text-2xl md:text-3xl text-secondary">{feature.icon}</div>
-                                            <Header3 className="text-primary font-semibold">{feature.title}</Header3>
+                                            <div className="h-10 w-8 lg:w-10 border-primary/50 group-hover:scale-110 flex-shrink-0 flex justify-start items-center text-2xl md:text-3xl text-secondary">{feature.icon}</div>
+                                            <Header3 className="text-primary text-xl md:text-2xl lg:text-3xl font-semibold">{feature.title}</Header3>
                                         </div>
                                         <Para3>{feature.description}</Para3>
                                     </aside>

@@ -8,7 +8,7 @@ import { headerLinks } from '@/data'
 import Image from 'next/image';
 import { ASSETS_URL } from '@/constants';
 import { appRoutePaths } from '@/routes/paths';
-import { ButtonSmall } from './ui/Buttons';
+import GetQuote from './GetQuote'
 
 export default function Header() {
   const [navShow, setNavShow] = useState(false);
@@ -34,14 +34,14 @@ export default function Header() {
 
 
   return (
-    <header ref={headerRef} className={`px-4 p-4 fixed w-full h-auto left-0 top-0 z-50 ${fixed ? 'bg-white shadow-md shadow-primary/10 fixed' : 'bg-transparent relative'}`}>
+    <header ref={headerRef} className={`lg:p-4 lg:pr-0 fixed w-full h-auto left-0 top-0 z-50 ${fixed ? 'bg-white shadow-md shadow-primary/10 fixed' : 'bg-transparent relative'}`}>
       {/* <div className="container flex justify-end items-center gap-3">
         <Link href={"mailto:info@oakyardproperties.com"} className='text-[.65rem] md:text-xs text-white'>info@oakyardproperties.com</Link>
         <Link href={"tel:+234802808256025"} className='text-[.65rem] md:text-xs text-white pl-3 border-l border-l-primary'>+23480-280-825-6025</Link>
         <span className="cursor-pointer p-4 grid place-items-center text-white text-[.65rem] md:text-xs"><IoIosSearch /></span>
       </div> */}
-      <div className="md:container mx-auto flex items-center justify-between gap-4 relative">
-        <Link href={appRoutePaths.home} className={`p-2 ${fixed ? 'bg-white' : 'bg-transparent'}`}>
+      <div className="lg:container p-4 lg:px-0 lg:py-2 w-full mx-auto flex items-center justify-between gap-4 relative">
+        <Link href={appRoutePaths.home} className={`${fixed ? 'bg-white' : 'bg-transparent'}`}>
           <h1 className={`relative uppercase font-bold text-xl md:text-3xl flex items-end h-10 w-32 p-2`}>
             <Image src={ASSETS_URL["oakyard_logo"]} alt={'oakyard properties logo'} className='object-contain' fill />
           </h1>
@@ -55,9 +55,7 @@ export default function Header() {
             }
           </div>
           {/* <Link href={"/contact"} className='text-sm text-primary font-medium py-2 px-4 bg-white hover:bg-white/60 hover:text-primary'>Get Quote</Link> */}
-          <Link href={appRoutePaths.contact}>
-            <ButtonSmall className='py-1.5 px-4 md:px-6 w-full md:w-max md:rounded-lg text-white bg-dark hover:bg-primary font-medium' >Get Quote</ButtonSmall>
-          </Link>
+          <GetQuote />
         </nav>
         <aside className="relative z-50 ml-auto w-[4rem] sm:w-max md:w-max flex gap-2 items-center justify-end sm:pr-0">
           <div className="relative md:hidden flex gap-2 items-center md:p-1">

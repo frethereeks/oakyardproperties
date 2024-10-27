@@ -6,7 +6,7 @@ import Aos from 'aos'
 export default function AosProvider({ children }: { children: React.ReactNode }) {
   React.useEffect(() => {
     Aos.init({
-      duration: 3000,
+      duration: 1000,
       once: true
     })
   }, [])
