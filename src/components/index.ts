@@ -9,7 +9,7 @@ import HappyClientSection from "./HappyClientSection";
 import Header from "./Header";
 import HomePropertySlide from "./HomePropertySlide"
 import PropertyCard from "./PropertyCard"
-import QualitySection from "./QualitySection"
+import MissionVisionSection from "./MissionVisionSection"
 import StrategicSection from "./StrategicSection"
 import { VideoPlayer } from "./ui/VideoPlayer";
 
@@ -25,7 +25,7 @@ export {
     Header,
     HomePropertySlide,
     PropertyCard,
-    QualitySection,
+    MissionVisionSection,
     StrategicSection,
     VideoPlayer,
 }

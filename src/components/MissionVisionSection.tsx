@@ -2,7 +2,7 @@ import React from 'react'
 import { Header4, Para1Light } from './ui/Typography'
 import { AiFillCompass, AiOutlineIdcard, AiOutlineKey } from 'react-icons/ai'
 
-export default function QualitySection() {
+export default function MissionVisionSection() {
     return (
         <section className='relative py-14 md:py-24 px-4 bg-dark rounded-[2%] text-white shadow-xl shadow-dark/20'>
             <div className="container mx-auto grid sm:grid-cols-2 md:grid-cols-3 gap-5 justify-center">
@@ -12,7 +12,7 @@ export default function QualitySection() {
                         [823497232, <AiFillCompass key={823497233} className="text-inherit" />, "Vision", "Our vision is to attain the height of being the leading real estate property company in the coutry and beyond. We consistently amove to develop collaborations and partnerships, based on transparency and mututal trust, which serves to build enduring client relationships."],
                         [823497234, <AiOutlineKey key={823497235} className="text-inherit" />, "Core Values", "Respect, trust, teamwork, excellence, innovation, effectiveness, passion, accountability and integrity."],
                     ].map(([id, icon, title, text], i) => (
-                        <figure data-aos-duration="3000" data-aos-delay={`${i === 0 ? '1000' : i === 1 ? '2000' : '3000'}`} data-aos={`${i === 0 ? 'fade-left' : i === 1 ? 'fade-up' : 'fade-right'}`} key={id.toString()} className="flex flex-col gap-3 text-white max-w-[24rem] mx-auto my-5">
+                        <figure data-aos-duration="1000" data-aos-delay={`${i === 0 ? '600' : i === 1 ? '800' : '1000'}`} data-aos={`${i === 0 ? 'fade-left' : i === 1 ? 'fade-up' : 'fade-right'}`} key={id.toString()} className="flex flex-col gap-3 text-white max-w-[24rem] mx-auto my-5">
                             <span className="text-3xl sm:text-4xl h-10 w-10">{icon}</span>
                             <div className="flex flex-col gap-2">
                                 <Header4 className="font-bold text-lg sm:text-xl text-primary">{title}</Header4>
