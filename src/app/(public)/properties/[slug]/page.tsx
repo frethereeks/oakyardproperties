@@ -105,7 +105,7 @@ export default async function SinglePropertyPage({ params: { slug } }: PageParam
         <div className="container mx-auto flex flex-col gap-6 md:gap-8">
           <Header4>You may also like</Header4>
           <AppSlider
-            items={properties?.items.filter(el => el.fields.slug !== slug).slice(0, 4).map((property) => <PropertyCard key={property.sys.id} property={property} />) || []}
+            items={properties?.items.filter(el => el.fields.slug !== slug).slice(0, 4).map((property) => <PropertyCard key={property.sys.id} property={property.fields} />) || []}
             breakpoints={{
               360: { slidesPerView: 1, spaceBetween: 10 },
               650: { slidesPerView: 2, spaceBetween: 20 },

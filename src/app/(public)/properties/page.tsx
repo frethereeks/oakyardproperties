@@ -42,7 +42,7 @@ export default async function PropertiesPage() {
         <div className="container mx-auto grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8 justify-center">
           {
             data?.items.map((property, i) => <div key={property.sys.id} data-aos-duration="1000" data-aos-delay={`${i * 500}`} data-aos={`${i % 2 === 0 ? 'fade-left' : i % 3 === 1 ? 'fade-up' : 'fade-right'}`}>
-              <PropertyCard key={property.sys.id} property={property} />
+              <PropertyCard key={property.sys.id} property={property.fields} />
             </div>
             )
           }

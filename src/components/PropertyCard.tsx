@@ -5,12 +5,12 @@ import ContentFulImage from './ContentFulImage'
 import { Header5, Para3, ParaSmall } from './ui/Typography'
 import { appRoutePaths } from '@/routes/paths'
 
-export default function PropertyCard({ property }: { property: TPropertyItem }) {
-  const { id } = property.sys
-  const { slug, title, image, address, price, state } = property.fields
+export default function PropertyCard({ property }: { property: TPropertyFields }) {
+  // const { id } = property.sys
+  const { slug, title, image, address, price, state } = property
   return (
     <>
-      <Link href={`${appRoutePaths.properties}/${slug}`} key={id} className='flex flex-col gap-2'>
+      <Link href={`${appRoutePaths.properties}/${slug}`} className='flex flex-col gap-2'>
         <div className="relative h-40 md:h-52 rounded-md overflow-hidden">
           <ContentFulImage src={image[0].fields.file.url} alt={title} className='object-cover' />
           <div className="absolute top-3 right-3 py-1 px-3 rounded-full bg-secondary text-white">

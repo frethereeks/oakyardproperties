@@ -11,23 +11,26 @@ export default function Notification() {
 
   const showNotification = async () => {
     if ("Notification" in window) {
-      Notification.requestPermission().then((permission) => {
-        setNotificationPermission(permission)
-        if (permission === "granted") {
-          subscribeUser()
-        }
-        else {
-          toast.dismiss(`Please, go to the setting and enable notification`)
-        }
-      })
+      // Notification.requestPermission().then((permission) => {
+      //   setNotificationPermission(permission)
+      //   if (permission === "granted") {
+      //     subscribeUser()
+      //   }
+      //   else {
+      //     toast.dismiss(`Please, go to the setting and enable notification`)
+      //   }
+      // })
+      setNotificationPermission("granted")
+      subscribeUser()
     }
     else {
       toast.error(`This device does not support notification`)
     }
   }
-
+  
   const removeNotification = async () => {
-
+    setNotificationPermission("denied")
+    setUser({id: "1230-", notification: false})
   }
 
   const generateSubscribeEndPoint = async (newRegistration: ServiceWorkerRegistration) => {
@@ -37,6 +40,7 @@ export default function Notification() {
       userVisibleOnly: true // This ensures the delivery of notifications that are visible to the user, eliminating silent notifications. (Mandatory in Chrome and optional in Firefox)
     }
     const subscription = await newRegistration.pushManager.subscribe(options)
+    console.log('subscription', subscription)
   }
 
   const subscribeUser = async () => {
@@ -51,7 +55,8 @@ export default function Notification() {
           // Register the service worker
           const newRegistration = await navigator.serviceWorker.register("/sw.js")
           // Subscribe to push notifications
-          generateSubscriberEndPoint(newRegistration)
+          // generateSubscriberEndPoint(newRegistration)
+          console.log('newRegistration', newRegistration)
         }
       } catch (error) {
         console.log('error', error)
