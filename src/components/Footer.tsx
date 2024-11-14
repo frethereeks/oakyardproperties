@@ -22,7 +22,7 @@ export default function Footer() {
           <Header4 className='text-white'>Quick Links</Header4>
           <div className="flex flex-col text-base md:text-base opacity-90">
             <p className="leading-loose">Monday - Friday</p>
-            <p className="leading-loose">09:00 AM - 05:00 PM</p>
+            <p className="leading-loose">08:30 AM - 05:00 PM</p>
             <Link href={"tel: +2349088888733"} className="leading-loose">Tel: +2349088888733</Link>
           </div>
         </aside>
@@ -31,7 +31,7 @@ export default function Footer() {
             <Header4 className='text-white'>Opening Hours</Header4>
             <div className="flex flex-col text-base md:text-base opacity-90">
               <p className="leading-loose">Monday - Friday</p>
-              <p className="leading-loose">10:00 AM - 08:00 PM</p>
+              <p className="leading-loose">08:30 AM - 05:00 PM</p>
               <Link href={"tel: +2349088888733"} className="leading-loose">Tel: +2349088888733</Link>
             </div>
           </div>

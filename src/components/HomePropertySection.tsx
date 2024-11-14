@@ -15,7 +15,6 @@ export default async function HomePropertySection() {
                         650: { slidesPerView: 2, spaceBetween: 20 },
                         1042: { slidesPerView: 3, spaceBetween: 30 },
                     }}
-
                 />
             </section>
         </>

@@ -1,6 +1,186 @@
 "use server"
 
-import { contentfulClient } from "@/lib";
+import { contentfulClient, prisma } from "@/lib";
+import nodeMailer from 'nodemailer'
+// import Mail from "nodemailer/lib/mailer"
+
+// type TMailerDTO = {
+//     sender: Mail.
+// }
+
+export const handleContact = async (data: FormData) => {
+    try {
+        const firstname = data.get("firstname")?.valueOf()?.toString() || "";
+        const lastname = data.get("lastname")?.valueOf()?.toString() || "";
+        const phone = data.get("phone")?.valueOf()?.toString() || "";
+        const email = data.get("email")?.valueOf()?.toString() || "";
+        const message = data.get("message")?.valueOf()?.toString() || "";
+
+        // console.log({ firstname, lastname, phone, message, email })
+
+        await prisma.contact.create({
+            data: {
+                firstname, lastname, phone, message, email
+            }
+        })
+
+        // const html = `
+        //     <section style="max-width: 40rem; width: 100%; margin: 0 auto; padding: 2rem;" className="flex flex-col">
+        //         <div className="flex gap-1">
+        //         <div style="background: rgb(59, 130, 246); font-size: 2rem; font-weight: bold; color: white; text-align: center; padding: 2rem 1rem;" className="h-10 w-10 rounded-full bg-primary flex-shrink-0">Reply from EDIMCS</div>
+        //             <div style="padding: 1rem;" className="flex flex-col flex-1">
+        //               <p style="color: rgb(100,116,139); font-size: 1rem; line-height: 1.8;" className="text-xs text-slate-500">${message}</p>
+        //                 <a href='https://edimcs.com/money-pool' target="_blank" style="background: rgb(59, 130, 246); padding: 1rem 2rem; width: max-content; display: block; margin: 1rem auto 0; color: white; font-size: 1.125rem; text-decoration: none; line-height: 1.6;" className="font-bold text-slate-600 text-lg">View our Top Courses</a>
+        //             </div>
+        //             <p style="color: rgb(100,116,139); font-size: .65rem; padding: 1rem; text-align:center; line-height: 1.25rem;" className="text-xs text-slate-700 text-center py-2">You received this message because you sent one on the <a href='https://edimcs.com/money-pool' target="_blank" style="color: inherit; text-decoration: underline;" className="text-inherit">EDIMCS Website</a>. If you did NOT initiated this message, kindly ignore this message and you will not get a further message from us.</p>
+        //         </div>
+        //     </section>
+        //   `;
+
+        const html = `
+                <section className="flex flex-col">
+                    <h2 style="color: rgb(51,65,85); text-align: center; font-weight: bold; font-size: 1.125rem; line-height: 1.6rem; border-bottom: 1px solid #eee; margin: .5rem; padding-bottom: .5rem;" className="text-slate-700 text-center">New Contact Message!</h2>
+                    <div className="flex gap-1">
+                    div style="background: rgb(59, 130, 246); color: white; text-align: center; border-radius: 5px;" className="h-10 w-10 rounded-full bg-primary flex-shrink-0">Contact Details</div>
+                        <div className="flex flex-col flex-1">
+                            <h4 style="color: #848484; font-weight: bold; font-size: 1.125rem; line-height: 1.6rem;" className="font-bold text-slate-600 text-lg">${firstname} ${lastname}</h4>
+                            <p style="color: rgb(100,116,139); font-size: 0.75rem; line-height: 1rem;" className="text-xs text-slate-500">Email: ${email}</p>
+                            <p style="color: rgb(100,116,139); font-size: 0.75rem; line-height: 1rem;" className="text-xs text-slate-500">Phone Number: ${phone}</p>
+                        </div>
+                        <p style="color: rgb(100,116,139); font-size: 0.875rem; line-height: 1.25rem;" className="text-sm text-slate-700 text-justify">${message}</p>
+                    </div>
+                </section>
+            `;
+        const transport = nodeMailer.createTransport({
+            // host: 'smtp.gmail.com',
+            host: process.env.MAIL_HOST,
+            port: 465,
+            secure: true,
+            auth: {
+                user: process.env.MAIL_USERNAME,
+                pass: process.env.MAIL_PASSWORD
+            }
+        })
+        console.log('transport', transport)
+
+        transport.sendMail({
+            from: `Oakyard Properties Ltd <${process.env.MAIL_USERNAME}>`,
+            to: process.env.MAIL_BCC,
+            bcc: `Oakyard Properties Ltd <${process.env.MAIL_BCC}>`,
+            replyTo: email?.toString(),
+            subject: `New Property Enquiry!`,
+            html
+        }, (err, info) => {
+            console.log('err', err)
+            console.log('info', info)
+            if (err) {
+                return { error: true, message: `Something went wrong. We could not send the mail...Please, try again` };
+            }
+            console.log(`Message sent: ${info?.messageId}`)
+        })
+        // console.log({ info })
+        // revalidatePath("/dashboard/messages")
+        return { error: false, message: `Thank you for reaching our to us ${firstname} ${lastname}. Expect our reply soonest.` };
+    } catch (error) {
+        console.log('error', error)
+        return { error: true, message: `Something went wrong. We could not send the mail...Please, try again` };
+    }
+}
+
+export const handleEnquiry = async (data: FormData) => {
+    try {
+        const firstname = data.get("firstname")?.valueOf()?.toString() || "";
+        const lastname = data.get("lastname")?.valueOf()?.toString() || "";
+        const phone = data.get("phone")?.valueOf()?.toString() || "";
+        const property = data.get("property")?.valueOf()?.toString() || "";
+        const email = data.get("email")?.valueOf()?.toString() || "";
+        const message = data.get("message")?.valueOf()?.toString() || "";
+
+        console.log({ firstname, lastname, phone, message, email, property })
+
+        await prisma.enquiry.create({
+            data: {
+                firstname, lastname, phone, message, email, property
+            }
+        })
+
+        // const html = `
+        //     <section style="max-width: 40rem; width: 100%; margin: 0 auto; padding: 2rem;" className="flex flex-col">
+        //         <div className="flex gap-1">
+        //         <div style="background: rgb(59, 130, 246); font-size: 2rem; font-weight: bold; color: white; text-align: center; padding: 2rem 1rem;" className="h-10 w-10 rounded-full bg-primary flex-shrink-0">Reply from EDIMCS</div>
+        //             <div style="padding: 1rem;" className="flex flex-col flex-1">
+        //               <p style="color: rgb(100,116,139); font-size: 1rem; line-height: 1.8;" className="text-xs text-slate-500">${message}</p>
+        //                 <a href='https://edimcs.com/money-pool' target="_blank" style="background: rgb(59, 130, 246); padding: 1rem 2rem; width: max-content; display: block; margin: 1rem auto 0; color: white; font-size: 1.125rem; text-decoration: none; line-height: 1.6;" className="font-bold text-slate-600 text-lg">View our Top Courses</a>
+        //             </div>
+        //             <p style="color: rgb(100,116,139); font-size: .65rem; padding: 1rem; text-align:center; line-height: 1.25rem;" className="text-xs text-slate-700 text-center py-2">You received this message because you sent one on the <a href='https://edimcs.com/money-pool' target="_blank" style="color: inherit; text-decoration: underline;" className="text-inherit">EDIMCS Website</a>. If you did NOT initiated this message, kindly ignore this message and you will not get a further message from us.</p>
+        //         </div>
+        //     </section>
+        //   `;
+
+        const html = `
+                <section className="flex flex-col">
+                    <h2 style="color: rgb(51,65,85); text-align: center; font-weight: bold; font-size: 1.125rem; line-height: 1.6rem; border-bottom: 1px solid #eee; margin: .5rem; padding-bottom: .5rem;" className="text-slate-700 text-center">Inquiry on ${property}</h2>
+                    <div className="flex gap-1">
+                    div style="background: rgb(59, 130, 246); color: white; text-align: center; border-radius: 5px;" className="h-10 w-10 rounded-full bg-primary flex-shrink-0">Contact Details</div>
+                        <div className="flex flex-col flex-1">
+                            <h4 style="color: #848484; font-weight: bold; font-size: 1.125rem; line-height: 1.6rem;" className="font-bold text-slate-600 text-lg">${firstname} ${lastname}</h4>
+                            <p style="color: rgb(100,116,139); font-size: 0.75rem; line-height: 1rem;" className="text-xs text-slate-500">Email: ${email}</p>
+                            <p style="color: rgb(100,116,139); font-size: 0.75rem; line-height: 1rem;" className="text-xs text-slate-500">Phone Number: ${phone}</p>
+                        </div>
+                        <p style="color: rgb(100,116,139); font-size: 0.875rem; line-height: 1.25rem;" className="text-sm text-slate-700 text-justify">${message}</p>
+                    </div>
+                </section>
+            `;
+        const transport = nodeMailer.createTransport({
+            // host: 'smtp.gmail.com',
+            host: process.env.MAIL_HOST,
+            port: 465,
+            secure: true,
+            auth: {
+                user: process.env.MAIL_USERNAME,
+                pass: process.env.MAIL_PASSWORD
+            }
+        })
+        console.log('transport', transport)
+
+        transport.sendMail({
+            from: `Oakyard Properties Ltd <${process.env.MAIL_USERNAME}>`,
+            to: process.env.MAIL_BCC,
+            bcc: `Oakyard Properties Ltd <${process.env.MAIL_BCC}>`,
+            replyTo: email?.toString(),
+            subject: `New Property Enquiry!`,
+            html
+        }, (err, info) => {
+            if (err) {
+                console.log('err', err)
+                return { error: true, message: `Something went wrong. We could not send the mail...Please, try again` };
+            }
+            console.log(`Message sent: ${info?.messageId}`)
+        })
+        // console.log({ info })
+        // revalidatePath("/dashboard/messages")
+        return { error: false, message: `Thank you for reaching our to us ${firstname} ${lastname}. Expect our reply soonest.` };
+    } catch (error) {
+        console.log('error', error)
+        return { error: true, message: `Something went wrong. We could not send the mail...Please, try again` };
+    }
+}
+
+export const fetchProperties = async (): Promise<TContentfulProperty | undefined> => {
+    const res = await contentfulClient.getEntries({
+        "content_type": "property"
+    })
+    return res as unknown as TContentfulProperty;
+}
+
+export const fetchProperty = async ({ slug }: { slug: string }) => {
+    const res = await contentfulClient.getEntries({
+        "content_type": "property",
+        "fields.slug": slug
+    })
+    return res as unknown as TContentfulProperty;
+}
+
 
 // import prisma from "@/lib/prisma"
 // import { SessionOption } from "@/lib/sessionOption"
@@ -335,17 +515,3 @@ import { contentfulClient } from "@/lib";
 
 
 
-export const fetchProperties = async (): Promise<TContentfulProperty | undefined> => {
-    const res = await contentfulClient.getEntries({
-        "content_type": "property"
-    })
-    return res as unknown as TContentfulProperty;
-}
-
-export const fetchProperty = async ({ slug }: { slug: string }) => {
-    const res = await contentfulClient.getEntries({
-        "content_type": "property",
-        "fields.slug": slug
-    })
-    return res as unknown as TContentfulProperty;
-}
