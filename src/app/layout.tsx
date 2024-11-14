@@ -17,8 +17,8 @@ export const metadata: Metadata = {
   title: "Oakyard Properties :: Home",
   description: "Oakyard properties LTD is a full-service, privately held commercial and residential real estate company.",
   icons: {
-    icon: [{ url: "/favicon-196.png", sizes: "196x196", type: "/image/png" }],
-    apple: [{ url: "/apple-icon-180.png" }]
+    icon: [{ url: "/favicon.ico", sizes: "196x196", type: "/image/x-icon" }],
+    apple: [{ url: "/favicon.ico" }]
   },
   // appleTouchIcon: "/apple-icon-180.png",
   appleWebApp: {
@@ -133,6 +133,7 @@ export const metadata: Metadata = {
       default: config.APP_NAME,
       template: "%s - OakyardProperties",
     },
+    images: "/favicon-196.png",
     description: config.APP_DESECRIPTION,
   },
   twitter: {

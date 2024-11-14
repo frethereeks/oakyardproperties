@@ -38,7 +38,7 @@ export default function ContactPage() {
           {/* <div className="relative">
             <iframe width="100%" height="400" src={appRoutePaths.googleMap}></iframe>
           </div> */}
-          <div className="container mx-auto flex gap-8 lg:gap-10">
+          <div className="container mx-auto flex flex-col lg:flex-row gap-8 lg:gap-10">
             <aside className="flex-1 flex flex-col gap-10">
               <div data-aos-duration="1000" data-aos="fade-down" data-aos-delay="1000" className="flex flex-col">
                 <Header4 dotted className='text-primary font-bold'>Address</Header4>
