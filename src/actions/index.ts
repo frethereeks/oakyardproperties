@@ -1,6 +1,6 @@
 "use server"
 
-import { contentfulClient, prisma } from "@/lib";
+import { contentfulClient } from "@/lib";
 import nodeMailer from 'nodemailer'
 // import Mail from "nodemailer/lib/mailer"
 
@@ -18,11 +18,11 @@ export const handleContact = async (data: FormData) => {
 
         // console.log({ firstname, lastname, phone, message, email })
 
-        await prisma.contact.create({
-            data: {
-                firstname, lastname, phone, message, email
-            }
-        })
+        // await prisma.contact.create({
+        //     data: {
+        //         firstname, lastname, phone, message, email
+        //     }
+        // })
 
         // const html = `
         //     <section style="max-width: 40rem; width: 100%; margin: 0 auto; padding: 2rem;" className="flex flex-col">
@@ -96,13 +96,13 @@ export const handleEnquiry = async (data: FormData) => {
         const email = data.get("email")?.valueOf()?.toString() || "";
         const message = data.get("message")?.valueOf()?.toString() || "";
 
-        console.log({ firstname, lastname, phone, message, email, property })
+        // console.log({ firstname, lastname, phone, message, email, property })
 
-        await prisma.enquiry.create({
-            data: {
-                firstname, lastname, phone, message, email, property
-            }
-        })
+        // await prisma.enquiry.create({
+        //     data: {
+        //         firstname, lastname, phone, message, email, property
+        //     }
+        // })
 
         // const html = `
         //     <section style="max-width: 40rem; width: 100%; margin: 0 auto; padding: 2rem;" className="flex flex-col">
