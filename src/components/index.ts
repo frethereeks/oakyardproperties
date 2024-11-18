@@ -2,6 +2,7 @@ import AosProvider from "./AosProvider";
 import ContactForm from "./ContactForm";
 import ContentFulImage from "./ContentFulImage";
 import ContentfulRichText from "./ContentfulRichText";
+import {emailTemplate} from "./emailTemplate";
 import FeaturedSection from "./FeaturedSection";
 import FindDreamSection from "./FindDreamSection"
 import Footer from "./Footer";
@@ -23,6 +24,7 @@ export {
     ContactForm,
     ContentFulImage,
     ContentfulRichText,
+    emailTemplate,
     FeaturedSection,
     FindDreamSection,
     Footer,

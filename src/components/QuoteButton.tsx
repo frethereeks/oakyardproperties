@@ -5,7 +5,7 @@ import QuoteForm from './QuoteForm'
 import 'react-phone-number-input/style.css'
 
 type TQuoteFormProps = {
-    property: TPropertyItem[] | undefined
+    property: TPropertyFields[] | undefined
 }
 
 export default function QuoteButton({ property }: TQuoteFormProps) {

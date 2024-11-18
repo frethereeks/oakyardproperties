@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <main className='flex flex-col gap-5 lg:gap-10'>
-      <section className="bg-dark py-10 relative">
+      <section className="bg-darker py-10 relative">
         <Image src={ASSETS_URL['DC240124_6']} alt='DC240124_6' className="object-cover object-top absolute top-0 left-0 w-full h-full bg-white opacity-40" fill />
         {/* <div className="absolute top-0 left-0 w-full h-full bg-dark opacity-60"></div> */}
         <div className="relative container mx-auto flex flex-col gap-10 px-4">
@@ -38,7 +38,7 @@ export default function ContactPage() {
           {/* <div className="relative">
             <iframe width="100%" height="400" src={appRoutePaths.googleMap}></iframe>
           </div> */}
-          <div className="container mx-auto flex flex-col lg:flex-row gap-8 lg:gap-10">
+          <div className="container mx-auto flex flex-col md:flex-row gap-8 lg:gap-10">
             <aside className="flex-1 flex flex-col gap-10">
               <div data-aos-duration="1000" data-aos="fade-down" data-aos-delay="1000" className="flex flex-col">
                 <Header4 dotted className='text-primary font-bold'>Address</Header4>

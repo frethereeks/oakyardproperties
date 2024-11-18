@@ -18,7 +18,7 @@ export default function GetQuote() {
   
   return (
     <>
-      <QuoteButton property={property?.items} />
+      <QuoteButton property={property?.items.map(el => el.fields)} />
     </>
   )
 }

@@ -25,7 +25,7 @@ export default async function AboutPage() {
 
   return (
     <main className="flex flex-col">
-      <section className="bg-dark py-10 relative">
+      <section className="bg-darker py-10 relative">
         <Image src={ASSETS_URL['DC240124_10']} alt={"Oakyard About Image"} className="object-cover object-top absolute top-0 left-0 w-full h-full bg-white opacity-40" fill />
         {/* <div className="absolute top-0 left-0 w-full h-full bg-dark opacity-60"></div> */}
         <div className="relative container mx-auto flex flex-col gap-10 px-4">

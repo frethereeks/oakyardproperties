@@ -77,7 +77,7 @@ export default async function SinglePropertyPage({ params: { slug } }: PageParam
             <div className="relative flex flex-col gap-4">
               <ContentfulRichText content={description} />
               <div className="w-full flex justify-start py-4">
-                <QuoteButton property={data.items} />
+                <QuoteButton property={data.items.map(el => el.fields)} />
               </div>
             </div>
             <div className="grid grid-cols-2 md:max-w-md">

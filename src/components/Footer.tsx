@@ -9,7 +9,7 @@ import { Header3, Header4 } from './ui/Typography'
 
 export default function Footer() {
   return (
-    <footer className='relative py-20 px-4 bg-dark'>
+    <footer className='relative py-20 px-4 bg-darker'>
       <Image src={ASSETS_URL["DC240124_1"]} alt='Oakyard_Sign_Post' className="object-cover object-top opacity-20" fill />
       <div className="container mx-auto relative grid sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-10 text-white">
         <aside className="flex flex-col gap-6">
