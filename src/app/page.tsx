@@ -21,7 +21,7 @@ export default function HomePage() {
                   <Header1><span className="text-dark">Making your <span className="text-blue">Real Estate</span> dream a Reality!</span></Header1>
                 </div>
                 <div data-aos-duration="1000" data-aos-delay="1000" data-aos="fade-up">
-                  <Para1 className='text-primary'>We are a full-service, privately held commercial and residential real estate company. As a full business, we have the ability to rapidly move for any property from acquiring, financing, leasing, management and to maintenance.</Para1>
+                  <Para1 className='text-primary'>As a privately held, full-service real estate company, we offer comprehensive solutions in commercial and residential properties. From acquisition and financing to leasing, management, and maintenance, we handle every stage of the property lifecycle, allowing our clients to focus on growth while we deliver results.</Para1>
                 </div>
                 <Link data-aos-duration="1000" data-aos-delay="1200" data-aos="fade-up" href={appRoutePaths.properties} className='py-3 px-8 md:px-10 w-max rounded-md text-white text-xs md:text-sm bg-secondary'>Learn more</Link>
               </div>

@@ -13,12 +13,12 @@ const config: Config = {
         'xs': '512px'
       },
       colors: {
-        primary: '#3b82f6',
+        primary: '#0ab7db',
         secondary: "#f66",
         // dark: "#171717",
         // dark: "#214888",
         darker: "#122b54",
-        dark: "#1f2372",
+        dark: "#0d487e",
         sitetext: "#333333",
         success: "#09dba0",
         danger: "#f34f7c",
